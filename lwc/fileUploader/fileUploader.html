@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="File Upload Litify LWC" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+            <lightning-input type="file" 
+            accept=".xlsx, .xls, .csv, .png, .doc, .docx, .pdf, .txt"
+            label="Attachment" onchange={openfileUpload}></lightning-input>
+        </div>
+        <template if:true={fileData}>
+            <p>{fileData.filename}</p>
+           
+        </template>
+        <textarea cols="40" rows="20">
+            {palindromeOnlyPrint}
+        </textarea>
+        
+        <div if:true={fileData} class="slds-col--padded slds-size--1-of-1">
+            Character Frequency:
+            Number of times each character appears in Input File.
+            <canvas class="linechart" lwc:dom="manual"></canvas>
+            <div if:false={isChartJsInitialized} class="slds-col--padded slds-size--1-of-1">
+                <lightning-spinner alternative-text="Loading" size="medium" variant={loaderVariant}></lightning-spinner>
+            </div>
+        </div>
+            
+        
+    </lightning-card>
+</template>
+
